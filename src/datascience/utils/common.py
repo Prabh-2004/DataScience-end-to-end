@@ -6,7 +6,7 @@ import joblib
 from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
-from typing import Any
+from typing import Any, Union
 from box.exceptions import BoxValueError
 
 
@@ -49,14 +49,15 @@ def create_directories(paths:list, verbose=True):
 
 @ensure_annotations
 def save_to_json(path:Path, data:dict):
+    # path = Path(path)
     """save json data
 
     Args:
         path (Path): path to json file
         data (dict): data to be saved in json file
     """
-    with open(path, 'w') as f:
-        json.dump(data, path, indent=4)
+    with open(path, "w") as f:
+        json.dump(data, f, indent=4)
     
     logger.info(f"json file saved to: {path}")
 
